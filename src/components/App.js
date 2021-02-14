@@ -3,6 +3,7 @@ import { Container, Card, CardContent } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import SearchForm from './search/SearchForm';
 import { getRecipes } from '../API/Fetch';
+import Result from './result/Result';
 
 const useStyles = makeStyles((theme) => ({
   root:{
@@ -12,12 +13,6 @@ const useStyles = makeStyles((theme) => ({
     '& .MuiFormControl-root': {
       width:'100%'
     }
-  },
-  centerAlign: {
-    textAlign: 'center'
-  },
-  paragraph: {
-    marginBottom: '0px'
   }
 }));
 
@@ -26,6 +21,7 @@ function App() {
 
   const [loading, setLoading] = useState(false);
   const [searchHistory, setSearchHistory] = useState([]);
+  const [searchResult, setSearchResult] = useState(null);
 
   const searchRecipe = async searchData => {
     if(loading) return false;
@@ -36,6 +32,8 @@ function App() {
     setLoading(true);
 
     const result = await getRecipes(searchData.query);
+    setSearchResult(result);
+    console.log(result)
 
     setLoading(false);
     
@@ -45,13 +43,9 @@ function App() {
     <div className="App">
       <Container maxWidth="md" className={classes.container}>
         <Card className={classes.root}>
-          <CardContent>
-
-            <h1 className={classes.centerAlign}>Recipe Search</h1>
-            <p className={classes.paragraph}>Choose one or more options</p>
-            
+          <CardContent>  
             <SearchForm searchRecipe={searchRecipe} loading={loading} />
-            
+            {searchResult && <Result searchResult={searchResult} />}
           </CardContent>
         </Card>
       </Container>

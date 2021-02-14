@@ -34,6 +34,12 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
     textAlign: 'center',
     marginTop: '10px'
+  },
+  centerAlign: {
+    textAlign: 'center'
+  },
+  paragraph: {
+    marginBottom: '0px'
   }
 
 }));
@@ -141,25 +147,29 @@ export default function SearchForm(props){
   }
 
   return(
-    <form className={classes.root} autoComplete="off" onSubmit={submitForm}>
-      <RecipeName classes={classes} recipe_name={recipe_name} setRecipeName={setRecipeName} />
+    <>
+      <h1 className={classes.centerAlign}>Recipe Search</h1>
+      <p className={classes.paragraph}>Choose one or more options</p>
+      <form className={classes.root} autoComplete="off" onSubmit={submitForm}>
+        <RecipeName classes={classes} recipe_name={recipe_name} setRecipeName={setRecipeName} />
 
-      <Calories classes={classes} calories={calories} setCalories={setCalories} />
-      
-      <Time classes={classes} time={time} setTime={setTime} />
-      
-      <CuisineType classes={classes} cuisine_type={cuisine_type} setCuisineType={setCuisineType} />
+        <Calories classes={classes} calories={calories} setCalories={setCalories} />
+        
+        <Time classes={classes} time={time} setTime={setTime} />
+        
+        <CuisineType classes={classes} cuisine_type={cuisine_type} setCuisineType={setCuisineType} />
 
-      <Mealtype classes={classes} meal_type={meal_type} setMealType={setMealType} />
-      
-      <DishType classes={classes} dish_type={dish_type} setDishType={setDishType} />
-      
-      <DietSearch classes={classes} diet={diet} setDiet={setDiet} />
+        <Mealtype classes={classes} meal_type={meal_type} setMealType={setMealType} />
+        
+        <DishType classes={classes} dish_type={dish_type} setDishType={setDishType} />
+        
+        <DietSearch classes={classes} diet={diet} setDiet={setDiet} />
 
-      <HealthSearch classes={classes} health={health} setHealth={setHealth} />
-      
-      <SearchButton classes={classes} loading={loading} />
-      
-    </form>
+        <HealthSearch classes={classes} health={health} setHealth={setHealth} />
+        
+        <SearchButton classes={classes} loading={loading} />
+        
+      </form>
+    </>
   )
 }
