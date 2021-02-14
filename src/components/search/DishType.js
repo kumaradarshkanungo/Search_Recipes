@@ -19,7 +19,7 @@ export default function DishType(props){
         filterSelectedOptions
         value={dish_type}
         onChange={(event,value)=>handleAutoCompleteChange(value)}
-        renderInput={(params) => <TextField {...params} label="Dish Type" margin="normal" />} />
+        renderInput={(params) => <TextField {...params} label="Dish Type" margin="normal" placeholder="Ex. Bread" />} />
     </div>
   )
 } 

@@ -1,6 +1,8 @@
+import React, { useState } from 'react';
 import { Container, Card, CardContent } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import SearchForm from './search/SearchForm.js'
+import SearchForm from './search/SearchForm';
+import { getRecipes } from '../API/Fetch';
 
 const useStyles = makeStyles((theme) => ({
   root:{
@@ -22,6 +24,23 @@ const useStyles = makeStyles((theme) => ({
 function App() {
   const classes = useStyles();
 
+  const [loading, setLoading] = useState(false);
+  const [searchHistory, setSearchHistory] = useState([]);
+
+  const searchRecipe = async searchData => {
+    if(loading) return false;
+
+    const previousSearch = [...searchHistory];
+    previousSearch.push(searchData);
+    setSearchHistory(previousSearch);
+    setLoading(true);
+
+    const result = await getRecipes(searchData.query);
+
+    setLoading(false);
+    
+  };
+
   return (
     <div className="App">
       <Container maxWidth="md" className={classes.container}>
@@ -31,7 +50,7 @@ function App() {
             <h1 className={classes.centerAlign}>Recipe Search</h1>
             <p className={classes.paragraph}>Choose one or more options</p>
             
-            <SearchForm />
+            <SearchForm searchRecipe={searchRecipe} loading={loading} />
             
           </CardContent>
         </Card>

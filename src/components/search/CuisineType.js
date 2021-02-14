@@ -18,7 +18,7 @@ export default function CuisineType(props){
         filterSelectedOptions
         value={cuisine_type}
         onChange={(event,value)=>handleAutoCompleteChange(value)}
-        renderInput={(params) => <TextField {...params} label="Cuisine Type" margin="normal" />} />
+        renderInput={(params) => <TextField {...params} label="Cuisine Type" margin="normal" placeholder="Ex. Indian" />} />
     </div>
   )
 } 

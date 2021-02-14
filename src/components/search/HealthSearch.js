@@ -19,7 +19,7 @@ export default function HealthSearch(props){
         filterSelectedOptions
         value={health}
         onChange={(event,value)=>handleAutoCompleteChange(value)}
-        renderInput={(params) => <TextField {...params} label="Health" margin="normal" />} />
+        renderInput={(params) => <TextField {...params} label="Health" margin="normal" placeholder="Ex. Eggs" />} />
     </div>
   )
 } 

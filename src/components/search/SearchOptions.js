@@ -20,7 +20,7 @@ export const cuisineType = [
 ];
 
 export const dishType = [
- " Alcohol-cocktail",
+  "Alcohol-cocktail",
 	"Biscuits and cookies",
 	"Bread",
 	"Cereals",

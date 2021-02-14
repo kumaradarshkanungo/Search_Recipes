@@ -12,9 +12,10 @@ export default function Time(props){
     <div className={classes.textField}>
       <TextField
       id="standard-required"
-      label="Time"
+      label="Time (minutes)"
       name="time"
       value={time}
+      placeholder="Ex. 60"
       onChange={handleChange}  />
     </div>
   )

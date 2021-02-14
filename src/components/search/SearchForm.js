@@ -11,6 +11,13 @@ import HealthSearch from './HealthSearch.js';
 import SearchButton from './SearchButton.js';
 
 const useStyles = makeStyles((theme) => ({
+  root:{
+    '& .MuiCircularProgress-root':{
+      position: 'absolute',
+      marginLeft: '15px',
+      marginTop: '3px'
+    },
+  },
   inputClass:{
     padding: '10px',
   },
@@ -33,6 +40,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SearchForm(props){
   const classes = useStyles();
+  const { loading, searchRecipe } = props;
 
   const [recipe_name, setRecipeName] = useState("");
   const [calories, setCalories] = useState("");
@@ -45,6 +53,91 @@ export default function SearchForm(props){
 
   const submitForm = e => {
     e.preventDefault();
+
+    let searchText = `RecipeName=${recipe_name}`;
+    let searchRequest = `q=${recipe_name}`;
+
+    if(calories){
+      if(!isNaN(calories)){
+        searchText += `, Calories=${calories} Kcal`;
+        searchRequest += `&calories=${calories}`;
+      }else{
+        alert("Invalid Calories value");
+        return false;
+      }
+    }
+
+    if(time){
+      if(!isNaN(time)){
+        searchText += `, Time=${time} Minutes`;
+        searchRequest += `&time=${time}`;
+      }else{
+        alert("Invalid Time");
+        return false;
+      }
+    }
+
+    if(cuisine_type.length){
+      cuisine_type.forEach((value, index)=>{
+        if(index == 0){
+          searchText += `, Cuisine Type=${value}`;
+          searchRequest += `&cuisineType=${value}`;
+        }else{
+          searchText += `&${value}`;
+          searchRequest += `&cuisineType=${value}`;
+        }
+      })
+    }
+
+    if(meal_type.length){
+      meal_type.forEach((value, index)=>{
+        if(index == 0){
+          searchText += `, Meal Type=${value}`;
+          searchRequest += `&mealType=${value}`;
+        }else{
+          searchText += `&${value}`;
+          searchRequest += `&mealType=${value}`;
+        }
+      })
+    }
+
+    if(dish_type.length){
+      dish_type.forEach((value, index)=>{
+        if(index == 0){
+          searchText += `, Dish Type=${value}`;
+          searchRequest += `&dishType=${value}`;
+        }else{
+          searchText += `&${value}`;
+          searchRequest += `&dishType=${value}`;
+        }
+      })
+    }
+
+    if(diet.length){
+      diet.forEach((value, index)=>{
+        if(index == 0){
+          searchText += `, Diet=${value.label}`;
+          searchRequest += `&diet=${value.value}`;
+        }else{
+          searchText += `&${value.label}`;
+          searchRequest += `&diet=${value.value}`;
+        }
+      })
+    }
+
+    if(health.length){
+      health.forEach((value, index)=>{
+        if(index == 0){
+          searchText += `, Health=${value.label}`;
+          searchRequest += `&health=${value.value}`;
+        }else{
+          searchText += `&${value.label}`;
+          searchRequest += `&health=${value.value}`;
+        }
+      })
+    }
+
+    searchRecipe({string: searchText, query: searchRequest});
   }
 
   return(
@@ -65,7 +158,7 @@ export default function SearchForm(props){
 
       <HealthSearch classes={classes} health={health} setHealth={setHealth} />
       
-      <SearchButton classes={classes} />
+      <SearchButton classes={classes} loading={loading} />
       
     </form>
   )

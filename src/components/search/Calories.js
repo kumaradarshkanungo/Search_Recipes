@@ -11,10 +11,11 @@ export default function Calories(props){
   return(
     <div className={classes.textField}>
       <TextField
-        id="standard-required"
-        label="Calories"
+        id="calories"
+        label="Calories (Kcal)"
         name="calories"
         value={calories}
+        placeholder="Ex. 100"
         onChange={handleChange}  />
     </div>
   )

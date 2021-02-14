@@ -16,6 +16,7 @@ export default function RecipeName(props){
         label="Recipe Name"
         name="recipe_name"
         value={recipe_name}
+        placeholder="Ex. Chicken"
         onChange={handleChange} />
     </div>
   )

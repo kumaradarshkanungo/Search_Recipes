@@ -19,7 +19,7 @@ export default function DietSearch(props){
         filterSelectedOptions
         value={diet}
         onChange={(event,value)=>handleAutoCompleteChange(value)}
-        renderInput={(params) => <TextField {...params} label="Diet" margin="normal" />} />
+        renderInput={(params) => <TextField {...params} label="Diet" margin="normal" placeholder="Ex. Balanced" />} />
     </div>
   )
 } 
