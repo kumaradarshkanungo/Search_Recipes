@@ -4,10 +4,10 @@ import { mealType } from './SearchOptions.js';
 
 
 export default function Mealtype(props){
-  const { classes } = props;
+  const { classes, meal_type, setMealType } = props;
 
-  const handleAutoCompleteChange = (value, key) => {
-    console.log(value, key)
+  const handleAutoCompleteChange = value => {
+    setMealType(value)
   }
 
   return(
@@ -17,7 +17,8 @@ export default function Mealtype(props){
         options={mealType}
         getOptionLabel={(option) => option}
         filterSelectedOptions
-        onChange={(event,value)=>handleAutoCompleteChange(value,'meal_type')}
+        value={meal_type}
+        onChange={(event,value)=>handleAutoCompleteChange(value)}
         renderInput={(params) => <TextField {...params} label="Meal Type" margin="normal" />} />
     </div>
   )

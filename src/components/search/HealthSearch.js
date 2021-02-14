@@ -4,10 +4,10 @@ import { Health } from './SearchOptions.js';
 
 
 export default function HealthSearch(props){
-  const { classes } = props;
+  const { classes, health, setHealth } = props;
 
-  const handleAutoCompleteChange = (value, key) => {
-    console.log(value, key)
+  const handleAutoCompleteChange = value => {
+    setHealth(value)
   }
 
   return(
@@ -17,7 +17,8 @@ export default function HealthSearch(props){
         options={Health}
         getOptionLabel={(option) => option.label}
         filterSelectedOptions
-        onChange={(event,value)=>handleAutoCompleteChange(value,'health')}
+        value={health}
+        onChange={(event,value)=>handleAutoCompleteChange(value)}
         renderInput={(params) => <TextField {...params} label="Health" margin="normal" />} />
     </div>
   )

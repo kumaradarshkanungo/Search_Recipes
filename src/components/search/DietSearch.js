@@ -4,10 +4,10 @@ import { Diet } from './SearchOptions.js';
 
 
 export default function DietSearch(props){
-  const { classes } = props;
+  const { classes, diet, setDiet } = props;
 
-  const handleAutoCompleteChange = (value, key) => {
-    console.log(value, key)
+  const handleAutoCompleteChange = value => {
+    setDiet(value)
   }
 
   return(
@@ -17,7 +17,8 @@ export default function DietSearch(props){
         options={Diet}
         getOptionLabel={(option) => option.label}
         filterSelectedOptions
-        onChange={(event,value)=>handleAutoCompleteChange(value,'diet')}
+        value={diet}
+        onChange={(event,value)=>handleAutoCompleteChange(value)}
         renderInput={(params) => <TextField {...params} label="Diet" margin="normal" />} />
     </div>
   )

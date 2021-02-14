@@ -2,12 +2,11 @@ import { TextField } from '@material-ui/core';
 import { Autocomplete } from '@material-ui/lab';
 import { cuisineType } from './SearchOptions.js';
 
-
 export default function CuisineType(props){
-  const { classes } = props;
+  const { classes, cuisine_type, setCuisineType } = props;
 
-  const handleAutoCompleteChange = (value, key) => {
-    console.log(value, key)
+  const handleAutoCompleteChange = value => {
+    setCuisineType(value)
   }
 
   return(
@@ -17,7 +16,8 @@ export default function CuisineType(props){
         options={cuisineType}
         getOptionLabel={(option) => option}
         filterSelectedOptions
-        onChange={(event,value)=>handleAutoCompleteChange(value,'cuisine_type')}
+        value={cuisine_type}
+        onChange={(event,value)=>handleAutoCompleteChange(value)}
         renderInput={(params) => <TextField {...params} label="Cuisine Type" margin="normal" />} />
     </div>
   )

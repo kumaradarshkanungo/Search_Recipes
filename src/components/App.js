@@ -13,6 +13,9 @@ const useStyles = makeStyles((theme) => ({
   },
   centerAlign: {
     textAlign: 'center'
+  },
+  paragraph: {
+    marginBottom: '0px'
   }
 }));
 

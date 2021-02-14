@@ -136,7 +136,7 @@ export const Health = [
     value: "mustard-free"
   },
   {
-    label: "n/a",
+    label: "Low Fat Abs",
     value: "low-fat-abs"
   },
   {

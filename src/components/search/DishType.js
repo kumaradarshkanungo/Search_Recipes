@@ -4,10 +4,10 @@ import { dishType } from './SearchOptions.js';
 
 
 export default function DishType(props){
-  const { classes } = props;
+  const { classes, dish_type, setDishType } = props;
 
-  const handleAutoCompleteChange = (value, key) => {
-    console.log(value, key)
+  const handleAutoCompleteChange = value => {
+    setDishType(value)
   }
 
   return(
@@ -17,7 +17,8 @@ export default function DishType(props){
         options={dishType}
         getOptionLabel={(option) => option}
         filterSelectedOptions
-        onChange={(event,value)=>handleAutoCompleteChange(value,'dish_type')}
+        value={dish_type}
+        onChange={(event,value)=>handleAutoCompleteChange(value)}
         renderInput={(params) => <TextField {...params} label="Dish Type" margin="normal" />} />
     </div>
   )
