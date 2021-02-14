@@ -1,17 +1,16 @@
-import { TextField, Button } from '@material-ui/core';
-import Autocomplete from '@material-ui/lab/Autocomplete';
-import { makeStyles, withStyles } from '@material-ui/core/styles';
-import {cuisineType, dishType, mealType, Diet, Health} from './SearchOptions.js'
+import React, { useState } from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import RecipeName from './RecipeName.js';
+import Calories from './Calories.js';
+import Time from './Time.js';
+import CuisineType from './CuisineType.js';
+import Mealtype from './MealType.js';
+import DishType from './DishType.js';
+import DietSearch from './DietSearch.js';
+import HealthSearch from './HealthSearch.js';
+import SearchButton from './SearchButton.js';
 
 const useStyles = makeStyles((theme) => ({
-  root:{
-    '& .MuiFormControl-marginNormal': {
-      marginTop: '0px'
-    },
-    '& .MuiFormControl-root': {
-      width:'100%'
-    }
-  },
   inputClass:{
     padding: '10px',
   },
@@ -32,74 +31,38 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-const ColorButton = withStyles((theme) => ({
-  root: {
-    color: '#fff',
-    backgroundColor: '#7aca25',
-    '&:hover': {
-      backgroundColor: '#6db421',
-    },
-  },
-}))(Button);
-
 export default function SearchForm(props){
   const classes = useStyles();
+
+  const [recipe_name, setRecipeName] = useState("");
+  const [calories, setCalories] = useState("");
+  const [time, setTime] = useState("");
+
+  const submitForm = e => {
+    e.preventDefault();
+    console.log(time)
+  }
+
   return(
-    <form className={classes.root} noValidate autoComplete="off">
-      <div className={classes.textField}>
-        <TextField required id="standard-required" label="Recipe Name" />
-      </div>
-      <div className={classes.textField}>
-        <TextField id="standard-required" label="Calories" />
-      </div>
-      <div className={classes.textField}>
-        <TextField id="standard-required" label="Time" />
-      </div>
-      <div className={classes.textField}>
-      <Autocomplete
-        multiple
-        options={cuisineType}
-        getOptionLabel={(option) => option}
-        filterSelectedOptions
-        renderInput={(params) => <TextField {...params} label="Cuisine Type" margin="normal" />} />
-      </div>
-      <div className={classes.textField}>
-      <Autocomplete
-        multiple
-        options={mealType}
-        getOptionLabel={(option) => option}
-        filterSelectedOptions
-        renderInput={(params) => <TextField {...params} label="Meal Type" margin="normal" />} />
-      </div>
-      <div className={classes.textField}>
-      <Autocomplete
-        multiple
-        options={dishType}
-        getOptionLabel={(option) => option}
-        filterSelectedOptions
-        renderInput={(params) => <TextField {...params} label="Dish Type" margin="normal" />} />
-      </div>
-      <div className={classes.textField}>
-      <Autocomplete
-        multiple
-        options={Diet}
-        getOptionLabel={(option) => option.label}
-        filterSelectedOptions
-        renderInput={(params) => <TextField {...params} label="Diet" margin="normal" />} />
-      </div>
-      <div className={classes.textField}>
-      <Autocomplete
-        multiple
-        options={Health}
-        getOptionLabel={(option) => option.label}
-        filterSelectedOptions
-        renderInput={(params) => <TextField {...params} label="Health" margin="normal" />} />
-      </div>
-      <div className={classes.submitSection}>
-        <ColorButton variant="contained" color="primary" className={classes.margin}>
-          Submit
-        </ColorButton>
-      </div>
+    <form className={classes.root} autoComplete="off" onSubmit={submitForm}>
+      <RecipeName classes={classes} recipe_name={recipe_name} setRecipeName={setRecipeName} />
+
+      <Calories classes={classes} calories={calories} setCalories={setCalories} />
+      
+      <Time classes={classes} time={time} setTime={setTime} />
+      
+      <CuisineType classes={classes} />
+
+      <Mealtype classes={classes} />
+      
+      <DishType classes={classes} />
+      
+      <DietSearch classes={classes} />
+
+      <HealthSearch classes={classes} />
+      
+      <SearchButton classes={classes} />
+      
     </form>
   )
 }
