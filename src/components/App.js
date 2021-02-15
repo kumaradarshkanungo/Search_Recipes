@@ -33,18 +33,28 @@ function App() {
 
     const result = await getRecipes(searchData.query);
     setSearchResult(result);
-    console.log(result)
 
     setLoading(false);
     
   };
+
+  const searchAgain = async query => {
+    if(loading) return false;
+
+    setLoading(true);
+    
+    const result = await getRecipes(query);
+    setSearchResult(result);
+    
+    setLoading(false);
+  }
 
   return (
     <div className="App">
       <Container maxWidth="md" className={classes.container}>
         <Card className={classes.root}>
           <CardContent>  
-            <SearchForm searchRecipe={searchRecipe} loading={loading} />
+            <SearchForm searchRecipe={searchRecipe} loading={loading} searchHistory={searchHistory} searchAgain={searchAgain} />
             {searchResult && <Result searchResult={searchResult} />}
           </CardContent>
         </Card>

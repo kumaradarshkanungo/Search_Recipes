@@ -31,8 +31,8 @@ function Result(props) {
   },[searchResult]);
 
   const createTable = () => {
-    console.log("Hi");
-    setCount(searchResult.count)
+    setCount(searchResult.count);
+
     let temp = "";
     let tempArr = [];
     searchResult.hits.forEach(element => {
@@ -55,6 +55,7 @@ function Result(props) {
       }</b>`
       tempArr.push(createData(img, temp.yield, temp.label, `<b> ${parseInt(temp.totalNutrients.ENERC_KCAL.quantity)} kcal</b>` , nutrient))
     });
+    
     setRows(tempArr);
   }
 

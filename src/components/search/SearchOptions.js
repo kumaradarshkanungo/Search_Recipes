@@ -104,10 +104,6 @@ export const Health = [
     value: "fish-free"
   },
   {
-    label: "FODMAP free",
-    value: "fodmap-free"
-  },
-  {
     label: "Gluten",
     value: "gluten-free"
   },
@@ -136,14 +132,6 @@ export const Health = [
     value: "mustard-free"
   },
   {
-    label: "Low Fat Abs",
-    value: "low-fat-abs"
-  },
-  {
-    label: "No oil added",
-    value: "No-oil-added"
-  },
-  {
     label: "No-sugar",
     value: "low-sugar"
   },
@@ -154,10 +142,6 @@ export const Health = [
   {
     label: "Peanuts",
     value: "peanut-free"
-  },
-  {
-    label: "Pescatarian",
-    value: "pecatarian"
   },
   {
     label: "Pork-free",
